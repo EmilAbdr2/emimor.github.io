@@ -79,14 +79,21 @@
             padding: 25px;
         }
 
-        /* Блок с датой регистрации */
+        /* Блок с информацией и серверами */
+        .info-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
         .reg-date {
             text-align: center;
             font-size: 14px;
             color: #a0aec0;
-            margin-bottom: 20px;
             background: rgba(255, 255, 255, 0.03);
-            padding: 8px 16px;
+            padding: 8px 18px;
             border-radius: 20px;
             border: 1px solid rgba(255, 255, 255, 0.05);
             display: inline-block;
@@ -95,6 +102,45 @@
         .reg-date span {
             color: #00f2fe;
             font-weight: 700;
+        }
+
+        /* Плашки серверов */
+        .servers-row {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .server-badge {
+            background: rgba(0, 242, 254, 0.08);
+            border: 1px solid rgba(0, 242, 254, 0.25);
+            color: #ffffff;
+            padding: 6px 14px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 700;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .server-badge:hover {
+            background: rgba(0, 242, 254, 0.2);
+            border-color: #00f2fe;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 242, 254, 0.2);
+        }
+
+        .server-badge .vk-tag {
+            background: #0077ff;
+            color: #fff;
+            font-size: 10px;
+            padding: 1px 5px;
+            border-radius: 4px;
+            font-weight: 800;
         }
 
         /* Блок с объёмными кнопками */
@@ -189,7 +235,7 @@
             transition: all 0.25s ease;
         }
 
-        /* Кастомные цвета плашек Частных Организаций */
+        /* Цвета плашек Частных Организаций */
         .history-item.ppat {
             border-left-color: #00efff;
         }
@@ -200,6 +246,15 @@
 
         .history-item.pag {
             border-left-color: #1e245a;
+        }
+
+        /* Цвета плашек Государственных Структур */
+        .history-item.cgb {
+            border-left-color: #ffb7c5; /* Мягко-розовый */
+        }
+
+        .history-item.mvd {
+            border-left-color: #70a1ff; /* Нежно-синий */
         }
 
         .history-item.current {
@@ -294,9 +349,20 @@
 
         <!-- Основной контент -->
         <div class="content">
-            <!-- Объёмные кнопки и Дата регистрации -->
+            <!-- Объёмные кнопки, Сервера и Дата регистрации -->
             <div class="top-row">
-                <div class="reg-date">📅 Дата регистрации: <span>06.01.2024</span></div>
+                <div class="info-header">
+                    <div class="reg-date">📅 Дата регистрации: <span>06.01.2024</span></div>
+                    <div class="servers-row">
+                        <a href="https://vk.ru/province_rp5" target="_blank" class="server-badge">
+                            🎮 Сервер #5 <span class="vk-tag">VK</span>
+                        </a>
+                        <a href="https://vk.com/provinceseven" target="_blank" class="server-badge">
+                            🎮 Сервер #7 <span class="vk-tag">VK</span>
+                        </a>
+                    </div>
+                </div>
+
                 <div class="buttons">
                     <a href="https://vk.com/" target="_blank" class="btn">VK</a>
                     <a href="https://t.me/" target="_blank" class="btn">TG</a>
@@ -367,7 +433,7 @@
             <!-- История гос. структур -->
             <div class="section-title">🏛️ ИСТОРИЯ ГОС. СТРУКТУР</div>
 
-            <div class="history-item">
+            <div class="history-item cgb">
                 <div class="history-header">ЦГБ г. Приволжск</div>
                 <div class="history-details">
                     <span>📅 23.05.2026 — 03.06.2026</span>
@@ -376,7 +442,7 @@
                 </div>
             </div>
 
-            <div class="history-item current">
+            <div class="history-item mvd current">
                 <div class="history-header">ГУ МВД г. Невский</div>
                 <div class="history-details">
                     <span>📅 29.09.2026 — <span class="current-badge">Н. В.</span></span>
