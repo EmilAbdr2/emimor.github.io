@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>By EMorrison</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #080c14;
+            color: #e1e7ed;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* Главная объёмная карточка */
+        .profile-card {
+            width: 100%;
+            max-width: 750px;
+            background: rgba(18, 24, 36, 0.95);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(0, 242, 254, 0.15);
+            /* Многослойная глубокая тень */
+            box-shadow: 
+                0 20px 50px rgba(0, 0, 0, 0.8),
+                0 0 30px rgba(0, 242, 254, 0.05),
+                inset 0 1px 1px rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        /* Объёмный баннер */
+        .banner {
+            position: relative;
+            height: 190px;
+            background: 
+                linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(13, 59, 62, 0.9) 100%), 
+                radial-gradient(circle at 80% 20%, rgba(0, 242, 254, 0.25), transparent 40%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            border-bottom: 1px solid rgba(0, 242, 254, 0.2);
+            padding: 20px;
+            box-shadow: inset 0 -10px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .banner h1 {
+            font-size: 38px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: #ffffff;
+            text-transform: uppercase;
+            text-shadow: 
+                0 0 10px rgba(0, 242, 254, 0.6),
+                0 0 25px rgba(0, 242, 254, 0.4),
+                2px 4px 10px rgba(0, 0, 0, 0.8);
+        }
+
+        .banner span {
+            display: block;
+            font-size: 14px;
+            color: #00f2fe;
+            margin-top: 5px;
+            letter-spacing: 3px;
+            font-weight: 700;
+            text-shadow: 0 0 10px rgba(0, 242, 254, 0.5);
+        }
+
+        .content {
+            padding: 25px;
+        }
+
+        /* Блок с объёмными кнопками-пузырями */
+        .top-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 25px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding-bottom: 20px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* 3D-Кнопки (Пузыри) */
+        .btn {
+            background: linear-gradient(180deg, #00f2fe 0%, #00b8d4 100%);
+            color: #080c14;
+            padding: 10px 26px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+            /* Объёмные тени и блики */
+            box-shadow: 
+                0 6px 15px rgba(0, 242, 254, 0.35),
+                inset 0 2px 3px rgba(255, 255, 255, 0.6),
+                inset 0 -3px 5px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            display: inline-block;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 
+                0 10px 25px rgba(0, 242, 254, 0.6),
+                inset 0 2px 5px rgba(255, 255, 255, 0.8),
+                inset 0 -3px 5px rgba(0, 0, 0, 0.2);
+            color: #000000;
+        }
+
+        .btn.secondary {
+            background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
+            color: #00f2fe;
+            border: 1px solid rgba(0, 242, 254, 0.4);
+            box-shadow: 
+                0 6px 15px rgba(0, 0, 0, 0.4),
+                inset 0 1px 2px rgba(255, 255, 255, 0.1),
+                inset 0 -2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .btn.secondary:hover {
+            background: linear-gradient(180deg, #00f2fe 0%, #00d2d3 100%);
+            color: #080c14;
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Заголовки разделов */
+        .section-title {
+            font-size: 17px;
+            color: #00f2fe;
+            margin: 25px 0 15px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 800;
+            text-shadow: 0 0 12px rgba(0, 242, 254, 0.4);
+        }
+
+        /* Объёмные карточки-пузыри истории */
+        .history-item {
+            background: linear-gradient(145deg, #182232 0%, #121a26 100%);
+            border-left: 5px solid #00f2fe;
+            padding: 14px 18px;
+            margin-bottom: 12px;
+            border-radius: 12px;
+            /* Тень для создания 3D-эффекта выпячивания */
+            box-shadow: 
+                0 8px 16px rgba(0, 0, 0, 0.4),
+                inset 0 1px 1px rgba(255, 255, 255, 0.08),
+                inset 0 -2px 4px rgba(0, 0, 0, 0.3);
+            border-top: 1px solid rgba(255, 255, 255, 0.03);
+            border-right: 1px solid rgba(0, 0, 0, 0.2);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+            transition: all 0.25s ease;
+        }
+
+        .history-item.current {
+            border-left-color: #ff4757;
+            box-shadow: 
+                0 8px 18px rgba(239, 68, 68, 0.15),
+                0 4px 12px rgba(0, 0, 0, 0.4),
+                inset 0 1px 1px rgba(255, 255, 255, 0.08);
+        }
+
+        .history-item:hover {
+            transform: translateY(-2px) translateX(2px);
+            background: linear-gradient(145deg, #1e2b3e 0%, #162232 100%);
+            box-shadow: 
+                0 12px 24px rgba(0, 0, 0, 0.5),
+                0 0 15px rgba(0, 242, 254, 0.15),
+                inset 0 1px 2px rgba(255, 255, 255, 0.15);
+        }
+
+        .history-header {
+            font-weight: 700;
+            font-size: 15px;
+            margin-bottom: 8px;
+            color: #ffffff;
+            letter-spacing: 0.3px;
+        }
+
+        .history-details {
+            font-size: 13px;
+            color: #a0aec0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .respect {
+            color: #2ed573;
+            font-weight: 700;
+            text-shadow: 0 0 8px rgba(46, 213, 115, 0.3);
+        }
+
+        .current-badge {
+            color: #ff4757;
+            font-weight: 700;
+            text-shadow: 0 0 8px rgba(255, 71, 87, 0.4);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="profile-card">
+        <!-- Шапка (Баннер) -->
+        <div class="banner">
+            <div>
+                <h1>By EMorrison</h1>
+                <span>INFO</span>
+            </div>
+        </div>
+
+        <!-- Основной контент -->
+        <div class="content">
+            <!-- Объёмные функциональные кнопки -->
+            <div class="top-row">
+                <div class="buttons">
+                    <a href="https://vk.com/elrubcova09" target="_blank" class="btn">VK</a>
+                    <a href="https://t.me/morrisonkrd" target="_blank" class="btn">TG</a>
+                    <a href="https://forum.gtaprovince.ru/topic/1088523-biografiya-grazhdanina-emilya-morrisona/" target="_blank" class="btn secondary">Биография</a>
+                </div>
+            </div>
+
+            <!-- История ЧО -->
+            <div class="section-title">💼 ИСТОРИЯ ЧО</div>
+
+            <div class="history-item">
+                <div class="history-header">Пассажирский автотранспорт</div>
+                <div class="history-details">
+                    <span>📅 24.06.2024 — 03.01.2026</span>
+                    <span>📌 Вице-президент холдинга</span>
+                    <span>👤 Anton Synkov — <span class="respect">Respect</span></span>
+                </div>
+            </div>
+
+            <div class="history-item">
+                <div class="history-header">АО «Арвутранспортэйшн»</div>
+                <div class="history-details">
+                    <span>📅 10.01.2026 — 01.05.2026</span>
+                    <span>📌 Главный инженер</span>
+                    <span>👤 Arvo Elnomdusuari — <span class="respect">Respect</span></span>
+                </div>
+            </div>
+
+            <div class="history-item">
+                <div class="history-header">Пассажирский автотранспорт</div>
+                <div class="history-details">
+                    <span>📅 01.05.2026 — 08.06.2026</span>
+                    <span>📌 Финансовый директор</span>
+                    <span>👤 Anton Synkov — <span class="respect">Respect</span></span>
+                </div>
+            </div>
+
+            <div class="history-item current">
+                <div class="history-header">АО «Приволжск Авто Газ»</div>
+                <div class="history-details">
+                    <span>📅 08.06.2026 — <span class="current-badge">Н. В.</span></span>
+                    <span>📌 <span class="current-badge">Ген. директор</span></span>
+                </div>
+            </div>
+
+            <!-- История гос. структур -->
+            <div class="section-title">🏛️ ИСТОРИЯ ГОС. СТРУКТУР</div>
+
+            <div class="history-item">
+                <div class="history-header">ЦГБ г. Приволжск</div>
+                <div class="history-details">
+                    <span>📅 23.05.2026 — 03.06.2026</span>
+                    <span>📌 Фельдшер</span>
+                    <span>👤 Alexander Vavilov — <span class="respect">Respect</span></span>
+                </div>
+            </div>
+
+            <div class="history-item current">
+                <div class="history-header">ГУ МВД г. Невский</div>
+                <div class="history-details">
+                    <span>📅 29.09.2026 — <span class="current-badge">Н. В.</span></span>
+                    <span>📌 <span class="current-badge">Сотрудник роты ППС</span></span>
+                    <span>👤 Alisa_Desize</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
