@@ -22,7 +22,7 @@
             padding: 20px;
         }
 
-        /* Главная объёмная карточка */
+        /* Карточка профиля */
         .profile-card {
             width: 100%;
             max-width: 750px;
@@ -37,7 +37,7 @@
             backdrop-filter: blur(10px);
         }
 
-        /* Объёмный баннер */
+        /* Баннер */
         .banner {
             position: relative;
             height: 190px;
@@ -79,7 +79,7 @@
             padding: 25px;
         }
 
-        /* Блок с информацией и серверами */
+        /* Блок информации и серверов */
         .info-header {
             display: flex;
             flex-direction: column;
@@ -104,7 +104,6 @@
             font-weight: 700;
         }
 
-        /* Плашки серверов */
         .servers-row {
             display: flex;
             gap: 12px;
@@ -143,7 +142,7 @@
             font-weight: 800;
         }
 
-        /* Блок с объёмными кнопками */
+        /* Блок соцсетей */
         .top-row {
             display: flex;
             flex-direction: column;
@@ -160,7 +159,6 @@
             flex-wrap: wrap;
         }
 
-        /* 3D-Кнопки (Пузыри) */
         .btn {
             background: linear-gradient(180deg, #00f2fe 0%, #00b8d4 100%);
             color: #080c14;
@@ -218,7 +216,7 @@
             text-shadow: 0 0 12px rgba(0, 242, 254, 0.4);
         }
 
-        /* Объёмные карточки-пузыри истории */
+        /* Карточки организаций */
         .history-item {
             background: linear-gradient(145deg, #182232 0%, #121a26 100%);
             border-left: 5px solid #00f2fe;
@@ -235,27 +233,12 @@
             transition: all 0.25s ease;
         }
 
-        /* Цвета плашек Частных Организаций */
-        .history-item.ppat {
-            border-left-color: #00efff;
-        }
-
-        .history-item.arvu {
-            border-left-color: #ff3600;
-        }
-
-        .history-item.pag {
-            border-left-color: #1e245a;
-        }
-
-        /* Цвета плашек Государственных Структур */
-        .history-item.cgb {
-            border-left-color: #ffb7c5; /* Мягко-розовый */
-        }
-
-        .history-item.mvd {
-            border-left-color: #70a1ff; /* Нежно-синий */
-        }
+        /* Цвета организаций через CSS */
+        .history-item.ppat { border-left-color: #00efff; }
+        .history-item.arvu { border-left-color: #ff3600; }
+        .history-item.pag  { border-left-color: #1e245a; }
+        .history-item.cgb  { border-left-color: #ffb7c5; }
+        .history-item.mvd  { border-left-color: #70a1ff; }
 
         .history-item.current {
             box-shadow: 
@@ -286,7 +269,6 @@
             gap: 8px;
         }
 
-        /* Ссылки внутри организаций */
         .org-links {
             display: inline-flex;
             gap: 8px;
@@ -301,19 +283,9 @@
             transition: opacity 0.2s;
         }
 
-        .org-link:hover {
-            opacity: 0.8;
-        }
-
-        .org-link.vk {
-            background-color: #0077ff;
-            color: #ffffff;
-        }
-
-        .org-link.tg {
-            background-color: #24A1DE;
-            color: #ffffff;
-        }
+        .org-link:hover { opacity: 0.8; }
+        .org-link.vk { background-color: #0077ff; color: #ffffff; }
+        .org-link.tg { background-color: #24A1DE; color: #ffffff; }
 
         .history-details {
             font-size: 13px;
@@ -339,7 +311,6 @@
 <body>
 
     <div class="profile-card">
-        <!-- Шапка (Баннер) -->
         <div class="banner">
             <div>
                 <h1>By EMorrison</h1>
@@ -347,30 +318,27 @@
             </div>
         </div>
 
-        <!-- Основной контент -->
         <div class="content">
-            <!-- Объёмные кнопки, Сервера и Дата регистрации -->
             <div class="top-row">
                 <div class="info-header">
                     <div class="reg-date">📅 Дата регистрации: <span>06.01.2024</span></div>
                     <div class="servers-row">
                         <a href="https://vk.ru/province_rp5" target="_blank" class="server-badge">
-                            🎮 #5 <span class="vk-tag">VK</span>
+                            🎮 Сервер #5 <span class="vk-tag">VK</span>
                         </a>
                         <a href="https://vk.com/provinceseven" target="_blank" class="server-badge">
-                            🎮 #7 <span class="vk-tag">VK</span>
+                            🎮 Сервер #7 <span class="vk-tag">VK</span>
                         </a>
                     </div>
                 </div>
 
                 <div class="buttons">
-                    <a href="https://vk.com/elrubcova09" target="_blank" class="btn">VK</a>
-                    <a href="https://t.me/morrisonkrd" target="_blank" class="btn">TG</a>
+                    <a href="https://vk.com/" target="_blank" class="btn">VK</a>
+                    <a href="https://t.me/" target="_blank" class="btn">TG</a>
                     <a href="https://forum.gtaprovince.ru/topic/1088523-biografiya-grazhdanina-emilya-morrisona/" target="_blank" class="btn secondary">Биография</a>
                 </div>
             </div>
 
-            <!-- История частных организаций -->
             <div class="section-title">💼 ИСТОРИЯ ЧАСТНЫХ ОРГАНИЗАЦИЙ</div>
 
             <div class="history-item ppat">
@@ -430,7 +398,6 @@
                 </div>
             </div>
 
-            <!-- История гос. структур -->
             <div class="section-title">🏛️ ИСТОРИЯ ГОС. СТРУКТУР</div>
 
             <div class="history-item cgb">
