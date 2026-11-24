@@ -10,6 +10,11 @@
             margin: 0;
             padding: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
@@ -17,9 +22,75 @@
             color: #e1e7ed;
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: flex-start;
             min-height: 100vh;
-            padding: 20px;
+            padding: 30px 20px;
+        }
+
+        /* Плавающая боковая панель «Фракции» */
+        .factions-sidebar {
+            position: fixed;
+            left: 25px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 225px;
+            background: rgba(18, 24, 36, 0.92);
+            border: 1px solid rgba(0, 242, 254, 0.25);
+            border-radius: 16px;
+            padding: 16px;
+            box-shadow: 
+                0 15px 35px rgba(0, 0, 0, 0.75),
+                0 0 20px rgba(0, 242, 254, 0.08),
+                inset 0 1px 1px rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+        }
+
+        .sidebar-title {
+            font-size: 13px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #00f2fe;
+            text-align: center;
+            padding-bottom: 10px;
+            margin-bottom: 12px;
+            border-bottom: 1px solid rgba(0, 242, 254, 0.2);
+            text-shadow: 0 0 8px rgba(0, 242, 254, 0.4);
+        }
+
+        .sidebar-windows {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .sidebar-window {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(145deg, #182232 0%, #121a26 100%);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-left: 3px solid #00f2fe;
+            border-radius: 10px;
+            padding: 10px 12px;
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 700;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35);
+            transition: all 0.25s ease;
+        }
+
+        .sidebar-window:active {
+            transform: translateX(4px);
+            background: linear-gradient(145deg, #1b3146 0%, #132536 100%);
+            border-color: #00f2fe;
+            color: #00f2fe;
+            box-shadow: 
+                0 6px 18px rgba(0, 0, 0, 0.5),
+                0 0 18px rgba(0, 242, 254, 0.45),
+                inset 0 0 10px rgba(0, 242, 254, 0.15);
         }
 
         /* Карточка профиля */
@@ -120,17 +191,18 @@
             text-decoration: none;
             font-size: 13px;
             font-weight: 700;
-            transition: all 0.2s ease;
+            transition: all 0.22s ease;
             display: inline-flex;
             align-items: center;
             gap: 6px;
         }
 
-        .server-badge:hover {
-            background: rgba(0, 242, 254, 0.2);
-            border-color: #00f2fe;
+        .server-badge:active,
+        .server-badge.mobile-link-glow {
+            background: rgba(0, 242, 254, 0.16);
+            border-color: rgba(0, 242, 254, 0.75);
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 242, 254, 0.2);
+            box-shadow: 0 0 14px rgba(0, 242, 254, 0.35);
         }
 
         .server-badge .vk-tag {
@@ -173,16 +245,16 @@
                 inset 0 2px 3px rgba(255, 255, 255, 0.6),
                 inset 0 -3px 5px rgba(0, 0, 0, 0.3);
             border: 1px solid rgba(255, 255, 255, 0.3);
-            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
             display: inline-block;
         }
 
-        .btn:hover {
-            transform: translateY(-3px) scale(1.03);
+        .btn:active,
+        .btn.mobile-link-glow {
+            transform: translateY(-2px) scale(1.02);
             box-shadow: 
-                0 10px 25px rgba(0, 242, 254, 0.6),
-                inset 0 2px 5px rgba(255, 255, 255, 0.8),
-                inset 0 -3px 5px rgba(0, 0, 0, 0.2);
+                0 0 18px rgba(0, 242, 254, 0.55),
+                inset 0 2px 4px rgba(255, 255, 255, 0.75);
             color: #000000;
         }
 
@@ -196,10 +268,12 @@
                 inset 0 -2px 4px rgba(0, 0, 0, 0.5);
         }
 
-        .btn.secondary:hover {
-            background: linear-gradient(180deg, #00f2fe 0%, #00d2d3 100%);
-            color: #080c14;
-            border-color: rgba(255, 255, 255, 0.5);
+        .btn.secondary:active,
+        .btn.secondary.mobile-link-glow {
+            background: linear-gradient(180deg, #1b344c 0%, #102133 100%);
+            color: #7cf9ff;
+            border-color: rgba(0, 242, 254, 0.8);
+            box-shadow: 0 0 16px rgba(0, 242, 254, 0.42);
         }
 
         /* Заголовки разделов */
@@ -207,6 +281,8 @@
             font-size: 17px;
             color: #00f2fe;
             margin: 25px 0 15px 0;
+            padding-top: 10px;
+            scroll-margin-top: 90px;
             display: flex;
             align-items: center;
             gap: 10px;
@@ -216,10 +292,14 @@
             text-shadow: 0 0 12px rgba(0, 242, 254, 0.4);
         }
 
-        /* Карточки организаций */
+        /* Базовые карточки-окна организаций + индивидуальные цвета */
         .history-item {
+            --accent: #00f2fe;
+            --accent-glow: rgba(0, 242, 254, 0.45);
+            --accent-tint: rgba(0, 242, 254, 0.14);
             background: linear-gradient(145deg, #182232 0%, #121a26 100%);
-            border-left: 5px solid #00f2fe;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-left: 5px solid var(--accent);
             padding: 14px 18px;
             margin-bottom: 12px;
             border-radius: 12px;
@@ -227,33 +307,112 @@
                 0 8px 16px rgba(0, 0, 0, 0.4),
                 inset 0 1px 1px rgba(255, 255, 255, 0.08),
                 inset 0 -2px 4px rgba(0, 0, 0, 0.3);
-            border-top: 1px solid rgba(255, 255, 255, 0.03);
-            border-right: 1px solid rgba(0, 0, 0, 0.2);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.3);
             transition: all 0.25s ease;
         }
 
-        /* Цвета организаций через CSS */
-        .history-item.ppat { border-left-color: #00efff; }
-        .history-item.arvu { border-left-color: #ff3600; }
-        .history-item.pag  { border-left-color: #1e245a; }
-        .history-item.cgb  { border-left-color: #ffb7c5; }
-        .history-item.mvd  { border-left-color: #70a1ff; }
-
-        .history-item.current {
-            box-shadow: 
-                0 8px 18px rgba(239, 68, 68, 0.15),
-                0 4px 12px rgba(0, 0, 0, 0.4),
-                inset 0 1px 1px rgba(255, 255, 255, 0.08);
+        .history-item.ppat {
+            --accent: #00efff;
+            --accent-glow: rgba(0, 239, 255, 0.5);
+            --accent-tint: rgba(0, 239, 255, 0.15);
         }
 
-        .history-item:hover {
+        .history-item.arvu {
+            --accent: #ff3600;
+            --accent-glow: rgba(255, 54, 0, 0.5);
+            --accent-tint: rgba(255, 54, 0, 0.15);
+        }
+
+        .history-item.pag {
+            --accent: #3b4cca;
+            --accent-glow: rgba(59, 76, 202, 0.65);
+            --accent-tint: rgba(59, 76, 202, 0.2);
+        }
+
+        .history-item.cgb {
+            --accent: #ffb7c5;
+            --accent-glow: rgba(255, 183, 197, 0.5);
+            --accent-tint: rgba(255, 183, 197, 0.15);
+        }
+
+        .history-item.mvd {
+            --accent: #70a1ff;
+            --accent-glow: rgba(112, 161, 255, 0.5);
+            --accent-tint: rgba(112, 161, 255, 0.15);
+        }
+
+        /* Свечение по таймеру на мобильных */
+        .history-item.mobile-glow {
             transform: translateY(-2px) translateX(2px);
-            background: linear-gradient(145deg, #1e2b3e 0%, #162232 100%);
+            background: linear-gradient(145deg, #1b2f44 0%, #142334 100%);
+            border-top-color: var(--accent);
+            border-right-color: var(--accent);
+            border-bottom-color: var(--accent);
             box-shadow: 
-                0 12px 24px rgba(0, 0, 0, 0.5),
-                0 0 15px rgba(0, 242, 254, 0.15),
-                inset 0 1px 2px rgba(255, 255, 255, 0.15);
+                0 10px 25px rgba(0, 0, 0, 0.5),
+                0 0 22px var(--accent-glow),
+                inset 0 0 12px var(--accent-tint);
+        }
+
+        /* :hover работает только на устройствах с полноценным курсором (ПК) */
+        @media (hover: hover) and (pointer: fine) {
+            .sidebar-window:hover {
+                transform: translateX(4px);
+                background: linear-gradient(145deg, #1b3146 0%, #132536 100%);
+                border-color: #00f2fe;
+                color: #00f2fe;
+                box-shadow: 
+                    0 6px 18px rgba(0, 0, 0, 0.5),
+                    0 0 18px rgba(0, 242, 254, 0.45),
+                    inset 0 0 10px rgba(0, 242, 254, 0.15);
+            }
+
+            .server-badge:hover {
+                background: rgba(0, 242, 254, 0.15);
+                border-color: rgba(0, 242, 254, 0.7);
+                transform: translateY(-2px);
+                box-shadow: 0 0 14px rgba(0, 242, 254, 0.32);
+            }
+
+            .btn:hover {
+                transform: translateY(-2px) scale(1.02);
+                box-shadow: 
+                    0 0 18px rgba(0, 242, 254, 0.55),
+                    inset 0 2px 4px rgba(255, 255, 255, 0.75);
+                color: #000000;
+            }
+
+            .btn.secondary:hover {
+                background: linear-gradient(180deg, #1b344c 0%, #102133 100%);
+                color: #7cf9ff;
+                border-color: rgba(0, 242, 254, 0.8);
+                box-shadow: 0 0 16px rgba(0, 242, 254, 0.4);
+            }
+
+            .history-item:hover {
+                transform: translateY(-2px) translateX(2px);
+                background: linear-gradient(145deg, #1b2f44 0%, #142334 100%);
+                border-top-color: var(--accent);
+                border-right-color: var(--accent);
+                border-bottom-color: var(--accent);
+                box-shadow: 
+                    0 10px 25px rgba(0, 0, 0, 0.5),
+                    0 0 22px var(--accent-glow),
+                    inset 0 0 12px var(--accent-tint);
+            }
+
+            .org-link:hover {
+                transform: translateY(-1px);
+            }
+
+            .org-link.vk:hover {
+                background-color: #268cff;
+                box-shadow: 0 0 12px rgba(0, 119, 255, 0.5);
+            }
+
+            .org-link.tg:hover {
+                background-color: #46b5eb;
+                box-shadow: 0 0 12px rgba(36, 161, 222, 0.5);
+            }
         }
 
         .history-header {
@@ -280,12 +439,35 @@
             border-radius: 6px;
             text-decoration: none;
             font-weight: 700;
-            transition: opacity 0.2s;
+            transition: all 0.2s ease;
         }
 
-        .org-link:hover { opacity: 0.8; }
-        .org-link.vk { background-color: #0077ff; color: #ffffff; }
-        .org-link.tg { background-color: #24A1DE; color: #ffffff; }
+        .org-link:active,
+        .org-link.mobile-link-glow {
+            transform: translateY(-1px);
+        }
+
+        .org-link.vk {
+            background-color: #0077ff;
+            color: #ffffff;
+        }
+
+        .org-link.vk:active,
+        .org-link.vk.mobile-link-glow {
+            background-color: #268cff;
+            box-shadow: 0 0 12px rgba(0, 119, 255, 0.55);
+        }
+
+        .org-link.tg {
+            background-color: #24A1DE;
+            color: #ffffff;
+        }
+
+        .org-link.tg:active,
+        .org-link.tg.mobile-link-glow {
+            background-color: #46b5eb;
+            box-shadow: 0 0 12px rgba(36, 161, 222, 0.55);
+        }
 
         .history-details {
             font-size: 13px;
@@ -304,11 +486,141 @@
         .current-badge {
             color: #ff4757;
             font-weight: 700;
-            text-shadow: 0 0 8px rgba(255, 71, 87, 0.4);
+        }
+
+        /* =========================================
+           МОБИЛЬНАЯ АДАПТАЦИЯ И ПОДСВЕТКА
+           ========================================= */
+        @media (max-width: 1240px) {
+            body {
+                flex-direction: column;
+                align-items: center;
+                padding: 85px 14px 25px 14px;
+            }
+
+            .factions-sidebar {
+                top: 10px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: calc(100% - 28px);
+                max-width: 750px;
+                padding: 10px 14px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 10px;
+                border-color: rgba(0, 242, 254, 0.35);
+                box-shadow: 
+                    0 10px 25px rgba(0, 0, 0, 0.8),
+                    0 0 18px rgba(0, 242, 254, 0.18);
+            }
+
+            .sidebar-title {
+                border-bottom: none;
+                padding-bottom: 0;
+                margin-bottom: 0;
+                font-size: 12px;
+                white-space: nowrap;
+            }
+
+            .sidebar-windows {
+                flex-direction: row;
+                gap: 8px;
+            }
+
+            .sidebar-window {
+                padding: 7px 11px;
+                font-size: 12px;
+                border-radius: 8px;
+            }
+
+            .sidebar-window:active {
+                transform: translateY(-2px);
+                box-shadow: 
+                    0 4px 14px rgba(0, 0, 0, 0.5),
+                    0 0 16px rgba(0, 242, 254, 0.55);
+            }
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding-top: 98px;
+            }
+
+            .factions-sidebar {
+                flex-direction: column;
+                align-items: stretch;
+                padding: 8px 10px;
+                gap: 6px;
+            }
+
+            .sidebar-title {
+                font-size: 11px;
+                text-align: center;
+            }
+
+            .sidebar-windows {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 6px;
+            }
+
+            .sidebar-window {
+                justify-content: center;
+                text-align: center;
+                padding: 7px 6px;
+                font-size: 11px;
+                gap: 5px;
+            }
+
+            .banner {
+                height: 150px;
+                padding: 15px;
+            }
+
+            .banner h1 {
+                font-size: 28px;
+            }
+
+            .banner span {
+                font-size: 11px;
+                letter-spacing: 2px;
+            }
+
+            .content {
+                padding: 18px 14px;
+            }
+
+            .section-title {
+                font-size: 15px;
+                scroll-margin-top: 105px;
+            }
+
+            .history-item {
+                padding: 12px 14px;
+            }
+
+            .history-item.mobile-glow {
+                transform: scale(0.99);
+            }
+
+            .history-details {
+                flex-direction: column;
+                gap: 6px;
+            }
         }
     </style>
 </head>
 <body>
+
+    <!-- Плавающая левая панель «Фракции» -->
+    <nav class="factions-sidebar">
+        <div class="sidebar-title">Фракции</div>
+        <div class="sidebar-windows">
+            <a href="#private-orgs" class="sidebar-window">💼 Частные организации</a>
+            <a href="#state-orgs" class="sidebar-window">🏛️ Гос. учреждения</a>
+        </div>
+    </nav>
 
     <div class="profile-card">
         <div class="banner">
@@ -324,22 +636,22 @@
                     <div class="reg-date">📅 Дата регистрации: <span>06.01.2024</span></div>
                     <div class="servers-row">
                         <a href="https://vk.ru/province_rp5" target="_blank" class="server-badge">
-                            🎮 #5 <span class="vk-tag">VK</span>
+                            🎮 Сервер #5 <span class="vk-tag">VK</span>
                         </a>
                         <a href="https://vk.com/provinceseven" target="_blank" class="server-badge">
-                            🎮 #7 <span class="vk-tag">VK</span>
+                            🎮 Сервер #7 <span class="vk-tag">VK</span>
                         </a>
                     </div>
                 </div>
 
                 <div class="buttons">
-                    <a href="https://vk.com/elrubcova09" target="_blank" class="btn">VK</a>
-                    <a href="https://t.me/morrisonkrd" target="_blank" class="btn">TG</a>
+                    <a href="https://vk.com/" target="_blank" class="btn">VK</a>
+                    <a href="https://t.me/" target="_blank" class="btn">TG</a>
                     <a href="https://forum.gtaprovince.ru/topic/1088523-biografiya-grazhdanina-emilya-morrisona/" target="_blank" class="btn secondary">Biography</a>
                 </div>
             </div>
 
-            <div class="section-title">💼 ИСТОРИЯ ЧАСТНЫХ ОРГАНИЗАЦИЙ</div>
+            <div id="private-orgs" class="section-title">💼 ИСТОРИЯ ЧАСТНЫХ ОРГАНИЗАЦИЙ</div>
 
             <div class="history-item ppat">
                 <div class="history-header">
@@ -385,7 +697,7 @@
                 </div>
             </div>
 
-            <div class="history-item pag current">
+            <div class="history-item pag">
                 <div class="history-header">
                     <span>АО «Приволжск Авто Газ»</span>
                     <span class="org-links">
@@ -398,7 +710,7 @@
                 </div>
             </div>
 
-            <div class="section-title">🏛️ ИСТОРИЯ ГОС. СТРУКТУР</div>
+            <div id="state-orgs" class="section-title">🏛️ ИСТОРИЯ ГОС. СТРУКТУР</div>
 
             <div class="history-item cgb">
                 <div class="history-header">ЦГБ г. Приволжск</div>
@@ -409,25 +721,100 @@
                 </div>
             </div>
 
-            <div class="history-item mvd current">
+            <div class="history-item mvd">
                 <div class="history-header">ГУ МВД г. Невский</div>
                 <div class="history-details">
                     <span>📅 29.09.2026 — 27.10.2026</span>
-                    <span>📌 <span class="current-badge">Старший лейтенант</span></span>
-                    <span>👤 Alisa_Desize — <span class="respect">Respect</span></span>
+                    <span>📌 Сотрудник роты ППС</span>
+                    <span>👤 Alisa_Desize</span>
                 </div>
             </div>
 
-             <div class="history-item mvd current">
+            <div class="history-item mvd">
                 <div class="history-header">ГУ МВД г. Мирный</div>
                 <div class="history-details">
                     <span>📅 27.10.2026 — <span class="current-badge">Н. В.</span></span>
                     <span>📌 <span class="current-badge">Сотрудник роты ППС</span></span>
-                    <span>👤 ?</span>
+                    <span>👤 Mikhail_Ball</span>
                 </div>
             </div>
         </div>
     </div>
+
+    <script>
+        (function () {
+            const items = document.querySelectorAll('.history-item');
+            const links = document.querySelectorAll('.server-badge, .btn, .org-link');
+            const releaseDelay = 2000; // Время подсветки на мобильных (мс)
+            let itemTimer = null;
+            let linkTimer = null;
+            let startY = 0;
+
+            function clearItemGlows() {
+                if (itemTimer) {
+                    clearTimeout(itemTimer);
+                    itemTimer = null;
+                }
+                items.forEach((el) => el.classList.remove('mobile-glow'));
+            }
+
+            function clearLinkGlows() {
+                if (linkTimer) {
+                    clearTimeout(linkTimer);
+                    linkTimer = null;
+                }
+                links.forEach((el) => el.classList.remove('mobile-link-glow'));
+            }
+
+            function clearAllGlows() {
+                clearItemGlows();
+                clearLinkGlows();
+            }
+
+            items.forEach((item) => {
+                item.addEventListener('touchstart', (e) => {
+                    if (e.touches && e.touches[0]) {
+                        startY = e.touches[0].clientY;
+                    }
+                    clearItemGlows();
+                    item.classList.add('mobile-glow');
+
+                    itemTimer = setTimeout(() => {
+                        clearItemGlows();
+                    }, releaseDelay);
+                }, { passive: true });
+
+                item.addEventListener('touchmove', (e) => {
+                    if (e.touches && e.touches[0] && Math.abs(e.touches[0].clientY - startY) > 10) {
+                        clearAllGlows();
+                    }
+                }, { passive: true });
+            });
+
+            links.forEach((link) => {
+                link.addEventListener('touchstart', (e) => {
+                    e.stopPropagation();
+                    if (e.touches && e.touches[0]) {
+                        startY = e.touches[0].clientY;
+                    }
+                    clearLinkGlows();
+                    link.classList.add('mobile-link-glow');
+
+                    linkTimer = setTimeout(() => {
+                        clearLinkGlows();
+                    }, releaseDelay);
+                }, { passive: true });
+
+                link.addEventListener('touchmove', (e) => {
+                    if (e.touches && e.touches[0] && Math.abs(e.touches[0].clientY - startY) > 10) {
+                        clearAllGlows();
+                    }
+                }, { passive: true });
+            });
+
+            window.addEventListener('scroll', clearAllGlows, { passive: true });
+        })();
+    </script>
 
 </body>
 </html>
